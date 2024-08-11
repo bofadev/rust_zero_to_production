@@ -3,6 +3,11 @@
 ### IDE
 This is a VS Code project.
 
+### Extension - Dependi
+This extension helps to manage our cargo.toml dependencies.
+
+The "red x" isn't well documented anywhere that I can find... I think it means there's a newer version of the crate?
+
 ### Installing Sqlx
 * cargo install --version="~0.7" sqlx-cli --no-default-features --features rustls,postgres
 

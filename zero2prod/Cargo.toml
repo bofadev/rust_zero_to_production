@@ -1,9 +1,18 @@
 [package]
 name = "zero2prod"
 version = "0.1.0"
-edition = "2021"
+edition = "2021" # LOL this should NOT be the year of your writing the code. This pics the rust toolchain year. Keep it at a stable one line 2021 
+authors = ["Dat Guy <whoknows@place.com>"]
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "zero2prod"
 
 [dependencies]
 actix-web = "4"
 anyhow = "1.0.86"
+reqwest = "0.12.5"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

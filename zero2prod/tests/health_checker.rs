@@ -1,4 +1,5 @@
 use std::net::TcpListener;
+use zero2prod::startup::run;
 
 
 #[tokio::test]
@@ -78,7 +79,7 @@ fn spawn_app() -> String {
 
     let port = listener.local_addr().unwrap().port();
 
-    let server = zero2prod::run(listener).expect("Failed to bind address");
+    let server = run(listener).expect("Failed to bind address");
 
     // Launch the server as a background task.
     let _ = tokio::spawn(server);

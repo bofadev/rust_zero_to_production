@@ -17,6 +17,7 @@ anyhow = "1.0.86"
 reqwest = "0.12.5"
 serde = { version = "1.0.206", features = ["derive"]}
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+config = "0.13"
 
 [dependencies.sqlx]
 version = "0.7.0"

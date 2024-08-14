@@ -33,7 +33,10 @@ DB_HOST="${POSTGRES_HOST:=localhost}"
 CONTAINER_NAME="zero2prod"
 
 # Launch postgres using docker
-if [ ! "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
+if [ "$(docker ps -a | awk '{print $NF}' | grep -w "${CONTAINER_NAME}" | cat)" ]; then
+    echo "Docker container already found (name=${CONTAINER_NAME}). Starting."
+    docker start ${CONTAINER_NAME}
+else
     echo "Creating Docker container (name=${CONTAINER_NAME})."
     docker run \
         --name ${CONTAINER_NAME} \
@@ -42,8 +45,6 @@ if [ ! "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
         -e POSTGRES_DB=${DB_PASSWORD} \
         -p "${DB_PORT}":5432 \
         -d postgres -N 1000 # ^ Increase max number of connections for testing purposes
-else
-    echo "Docker container already found (name=${CONTAINER_NAME})."
 fi
 
 # Keep pinging Postgres until it's readt to accept commands
